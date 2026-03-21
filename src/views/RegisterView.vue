@@ -1,0 +1,121 @@
+<script setup lang="ts">
+    import { ref } from "vue"
+    import { register } from "@/services/auth"
+    import router from "@/router"
+    import Navbar from "@/components/Navbar.vue"
+
+    const username = ref("")
+    const firstName = ref("")
+    const lastName = ref("")
+    const email = ref("")
+    const password1 = ref("")
+    const password2 = ref("")
+    const errorMessage = ref("")
+
+    const required = (value: string) => !!value || "This field is required"
+    const validEmail = (value: string) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return (!!value && pattern.test(value)) || "Invalid email"
+    }
+    const passwordsMatch = () => password1.value === password2.value || "Passwords do not match"
+
+    async function handleRegister() {
+        if (password1.value !== password2.value) {
+            errorMessage.value = "Passwords do not match"
+            return
+        }
+        const data = {
+            username: username.value,
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            password: password1.value,
+        }
+        try {
+            await register(data)
+            errorMessage.value = ""
+            await router.push("/")
+        } catch (error: Error) {
+            if (error.response) {
+                const serverData = error.response.data
+                if (serverData.username) {
+                    errorMessage.value = `Username: "${serverData.username}"`
+                } else if (serverData.first_name) {
+                    errorMessage.value = `Firstname "${serverData.first_name}"`
+                } else if (serverData.last_name) {
+                    errorMessage.value = `Lastname "${serverData.last_name}"`
+                } else if (serverData.email) {
+                    errorMessage.value = `Email "${serverData.email}"`
+                } else if (error.response?.status === 500) {
+                    errorMessage.value = `Field username and email must be unique`
+                } else {
+                    errorMessage.value = "Registration failed. Please try again"
+                }
+            } else {
+                errorMessage.value = "Server unavailable. Please try later"
+            }
+        }
+    }
+</script>
+
+<template>
+    <v-app>
+        <Navbar />
+        <br />
+        <br />
+        <v-container class="d-flex justify-center align-center" style="height: 80vh">
+            <v-card width="500" class="pa-6">
+                <v-card-title class="text-h5 text-center">Register</v-card-title>
+                <v-card-text>
+                    <v-form @submit.prevent="handleRegister">
+                        <v-text-field
+                            label="Username"
+                            v-model="username"
+                            v-bind:rules="[required]"
+                            required
+                        />
+                        <v-text-field
+                            label="Firstname"
+                            v-model="firstName"
+                            v-bind:rules="[required]"
+                            required
+                        />
+                        <v-text-field
+                            label="Lastname"
+                            v-model="lastName"
+                            v-bind:rules="[required]"
+                            required
+                        />
+                        <v-text-field
+                            label="Email"
+                            v-model="email"
+                            type="email"
+                            v-bind:rules="[required, validEmail]"
+                            required
+                        />
+                        <v-text-field
+                            label="Password"
+                            v-model="password1"
+                            type="password"
+                            v-bind:rules="[required]"
+                            required
+                        />
+                        <v-text-field
+                            label="Confirm password"
+                            v-model="password2"
+                            type="password"
+                            v-bind:rules="[required, passwordsMatch]"
+                            required
+                        />
+
+                        <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
+                            {{ errorMessage }}
+                        </v-alert>
+
+                        <v-btn type="submit" color="primary" class="mt-4" block>Register</v-btn>
+                    </v-form>
+                </v-card-text>
+            </v-card>
+        </v-container>
+    </v-app>
+</template>
