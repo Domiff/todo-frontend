@@ -3,6 +3,7 @@
     import { login } from "@/services/auth"
     import router from "@/router"
     import Navbar from "@/components/Navbar.vue"
+    import { loginErrorHandler } from "@/services/auth/errors.ts"
 
     const username = ref("")
     const password = ref("")
@@ -17,12 +18,8 @@
             await login(data)
             errorMessage.value = ""
             await router.push("/")
-        } catch (error: Error) {
-            if (error.response?.status === 400) {
-                errorMessage.value = "Incorrect login or password!"
-            } else {
-                errorMessage.value = "An error occurred. Please try again later."
-            }
+        } catch (error: unknown) {
+            loginErrorHandler(error, errorMessage)
         }
     }
 </script>

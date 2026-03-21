@@ -3,6 +3,7 @@
     import { register } from "@/services/auth"
     import router from "@/router"
     import Navbar from "@/components/Navbar.vue"
+    import { registerErrorHandler } from "@/services/auth/errors.ts"
 
     const username = ref("")
     const firstName = ref("")
@@ -35,25 +36,8 @@
             await register(data)
             errorMessage.value = ""
             await router.push("/")
-        } catch (error: Error) {
-            if (error.response) {
-                const serverData = error.response.data
-                if (serverData.username) {
-                    errorMessage.value = `Username: "${serverData.username}"`
-                } else if (serverData.first_name) {
-                    errorMessage.value = `Firstname "${serverData.first_name}"`
-                } else if (serverData.last_name) {
-                    errorMessage.value = `Lastname "${serverData.last_name}"`
-                } else if (serverData.email) {
-                    errorMessage.value = `Email "${serverData.email}"`
-                } else if (error.response?.status === 500) {
-                    errorMessage.value = `Field username and email must be unique`
-                } else {
-                    errorMessage.value = "Registration failed. Please try again"
-                }
-            } else {
-                errorMessage.value = "Server unavailable. Please try later"
-            }
+        } catch (error: unknown) {
+            registerErrorHandler(error, errorMessage)
         }
     }
 </script>
