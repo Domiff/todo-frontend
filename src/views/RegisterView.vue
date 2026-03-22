@@ -2,10 +2,9 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { AuthRequest } from "@/interfaces/apiClientInterface.ts"
+    import type { AuthRequest } from "@/interfaces/apiClientInterfaces.ts"
     import router from "@/router"
-    import { register } from "@/services/auth"
-    import { registerErrorHandler } from "@/services/auth/errors.ts"
+    import { register, registerErrorHandler } from "@/services/auth"
 
     const username = ref("")
     const firstName = ref("")

@@ -4,7 +4,7 @@ import type { Ref } from "vue"
 import type {
     LoginErrorInterface,
     RegisterErrorInterface,
-} from "@/interfaces/authErrorInterface.ts"
+} from "@/interfaces/authErrorInterfaces.ts"
 
 export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) {
     if (axios.isAxiosError<RegisterErrorInterface>(error)) {

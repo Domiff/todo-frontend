@@ -15,7 +15,15 @@ export interface AuthRequest {
     last_name?: string
 }
 
-export interface TokenResponse {
+export interface RegisterResponse {
+    id: string | number
+    token: {
+        access: string
+        refresh: string
+    }
+}
+
+export interface LoginResponse {
     access: string
     refresh: string
 }

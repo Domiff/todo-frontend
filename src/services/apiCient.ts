@@ -1,7 +1,8 @@
 import axios, { type AxiosRequestConfig } from "axios"
 
-import type { ApiClient, AuthRequest, TokenResponse } from "@/interfaces/apiClientInterface.ts"
+import type { ApiClient, AuthRequest } from "@/interfaces/apiClientInterfaces.ts"
 import { urls } from "@/services/urls.ts"
+import type { AuthResponse } from "@/types/authType.ts"
 
 class FetchApiClient<TResponse, TRequest = object> implements ApiClient<TResponse, TRequest> {
     private readonly baseUrl: string
@@ -39,4 +40,4 @@ class FetchApiClient<TResponse, TRequest = object> implements ApiClient<TRespons
     }
 }
 
-export const client = new FetchApiClient<TokenResponse, AuthRequest>(urls.base)
+export const authClient = new FetchApiClient<AuthResponse, AuthRequest>(urls.base)
