@@ -2,13 +2,16 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { AuthRequest } from "@/interfaces/apiClientInterfaces.ts"
+    import type { AuthRequest, LoginResponse } from "@/interfaces/apiClientInterfaces.ts"
     import router from "@/router"
     import { login, loginErrorHandler } from "@/services/auth"
+    import { useAuthStore } from "@/store/auth.ts"
 
     const username = ref("")
     const password = ref("")
     const errorMessage = ref("")
+
+    const auth = useAuthStore()
 
     async function handleLogin() {
         const data: AuthRequest = {
@@ -16,8 +19,10 @@
             password: password.value,
         }
         try {
-            await login(data)
-            errorMessage.value = ""
+            const loginDAta = (await login(data)) as LoginResponse
+            const access: string = loginDAta.access
+            const refresh: string = loginDAta.refresh
+            auth.setTokens(access, refresh)
             await router.push("/")
         } catch (error: unknown) {
             loginErrorHandler(error, errorMessage)

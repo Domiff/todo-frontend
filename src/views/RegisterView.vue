@@ -2,9 +2,10 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { AuthRequest } from "@/interfaces/apiClientInterfaces.ts"
+    import type { AuthRequest, RegisterResponse } from "@/interfaces/apiClientInterfaces.ts"
     import router from "@/router"
     import { register, registerErrorHandler } from "@/services/auth"
+    import { useAuthStore } from "@/store/auth.ts"
 
     const username = ref("")
     const firstName = ref("")
@@ -13,6 +14,8 @@
     const password1 = ref("")
     const password2 = ref("")
     const errorMessage = ref("")
+
+    const auth = useAuthStore()
 
     const required = (value: string) => !!value || "This field is required"
     const validEmail = (value: string) => {
@@ -35,8 +38,10 @@
             password: password1.value,
         }
         try {
-            await register(data)
-            errorMessage.value = ""
+            const registerData = (await register(data)) as RegisterResponse
+            const access: string = registerData.tokens.access
+            const refresh: string = registerData.tokens.refresh
+            auth.setTokens(access, refresh)
             await router.push("/")
         } catch (error: unknown) {
             registerErrorHandler(error, errorMessage)
