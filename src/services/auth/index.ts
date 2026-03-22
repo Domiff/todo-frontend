@@ -1,1 +1,1 @@
-export { register, login } from "@/services/auth/auth.ts"
+export { login, register } from "@/services/auth/auth.ts"

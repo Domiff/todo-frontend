@@ -1,8 +1,9 @@
-import type { Ref } from "vue"
 import axios from "axios"
+import type { Ref } from "vue"
+
 import type {
-    RegisterErrorInterface,
     LoginErrorInterface,
+    RegisterErrorInterface,
 } from "@/interfaces/authErrorInterface.ts"
 
 export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) {
