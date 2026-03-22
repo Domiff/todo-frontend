@@ -1,8 +1,10 @@
 <script setup lang="ts">
     import { ref } from "vue"
-    import { register } from "@/services/auth"
-    import router from "@/router"
+
     import Navbar from "@/components/Navbar.vue"
+    import type { AuthRequest } from "@/interfaces/apiClientInterface.ts"
+    import router from "@/router"
+    import { register } from "@/services/auth"
     import { registerErrorHandler } from "@/services/auth/errors.ts"
 
     const username = ref("")
@@ -18,14 +20,15 @@
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         return (!!value && pattern.test(value)) || "Invalid email"
     }
-    const passwordsMatch = () => password1.value === password2.value || "Passwords do not match"
+    const passwordsMatch = (): boolean | string =>
+        password1.value === password2.value || "Passwords do not match"
 
     async function handleRegister() {
         if (password1.value !== password2.value) {
             errorMessage.value = "Passwords do not match"
             return
         }
-        const data = {
+        const data: AuthRequest = {
             username: username.value,
             first_name: firstName.value,
             last_name: lastName.value,

@@ -1,8 +1,10 @@
 <script setup lang="ts">
     import { ref } from "vue"
-    import { login } from "@/services/auth"
-    import router from "@/router"
+
     import Navbar from "@/components/Navbar.vue"
+    import type { AuthRequest } from "@/interfaces/apiClientInterface.ts"
+    import router from "@/router"
+    import { login } from "@/services/auth"
     import { loginErrorHandler } from "@/services/auth/errors.ts"
 
     const username = ref("")
@@ -10,7 +12,7 @@
     const errorMessage = ref("")
 
     async function handleLogin() {
-        const data = {
+        const data: AuthRequest = {
             username: username.value,
             password: password.value,
         }
