@@ -5,7 +5,7 @@ import type {
     RefreshResponse,
     RegisterRequest,
     RegisterResponse,
-} from "@/interfaces/apiClientInterfaces.ts"
+} from "@/interfaces/authInterfaces.ts"
 
 export type AuthRequest = RegisterRequest | LoginRequest | RefreshRequest
 export type AuthResponse = RegisterResponse | LoginResponse | RefreshResponse

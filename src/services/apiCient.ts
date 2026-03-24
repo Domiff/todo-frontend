@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios"
 
-import type { ApiClient } from "@/interfaces/apiClientInterfaces.ts"
+import type { ApiClient } from "@/interfaces/authInterfaces.ts"
 import { urls } from "@/services/urls.ts"
 import type { AuthRequest, AuthResponse } from "@/types/authTypes.ts"
 

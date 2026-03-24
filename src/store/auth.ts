@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
 
-import type { RefreshRequest, RefreshResponse } from "@/interfaces/apiClientInterfaces.ts"
+import type { RefreshRequest, RefreshResponse } from "@/interfaces/authInterfaces.ts"
 import { refresh } from "@/services/auth/auth.ts"
 
 export const useAuthStore = defineStore("auth", () => {

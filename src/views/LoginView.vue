@@ -2,10 +2,11 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { LoginResponse } from "@/interfaces/apiClientInterfaces.ts"
+    import type { LoginRequest, LoginResponse } from "@/interfaces/authInterfaces.ts"
     import router from "@/router"
     import { login, loginErrorHandler } from "@/services/auth"
     import { useAuthStore } from "@/store/auth.ts"
+    import type {} from "@/types/authTypes.ts"
 
     const username = ref("")
     const password = ref("")
@@ -14,7 +15,7 @@
     const auth = useAuthStore()
 
     async function handleLogin() {
-        const data: AuthRequest = {
+        const data: LoginRequest = {
             username: username.value,
             password: password.value,
         }
