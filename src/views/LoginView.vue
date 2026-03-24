@@ -6,7 +6,6 @@
     import router from "@/router"
     import { login, loginErrorHandler } from "@/services/auth"
     import { useAuthStore } from "@/store/auth.ts"
-    import type {} from "@/types/authTypes.ts"
 
     const username = ref("")
     const password = ref("")
