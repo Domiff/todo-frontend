@@ -7,12 +7,21 @@ export interface ApiClient<TResponse, TRequest = object> {
     delete(url: string, config: AxiosRequestConfig): Promise<TResponse | null>
 }
 
-export interface AuthRequest {
+export interface RegisterRequest {
     username: string
     password: string
-    email?: string
-    first_name?: string
-    last_name?: string
+    email: string
+    first_name: string
+    last_name: string
+}
+
+export interface LoginRequest {
+    username: string
+    password: string
+}
+
+export interface RefreshRequest {
+    refresh: string
 }
 
 export interface RegisterResponse {
@@ -26,4 +35,8 @@ export interface RegisterResponse {
 export interface LoginResponse {
     access: string
     refresh: string
+}
+
+export interface RefreshResponse {
+    access: string
 }

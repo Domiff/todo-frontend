@@ -3,6 +3,7 @@ export const urls = {
     auth: {
         register: "auth/web/register/",
         login: "token/",
+        logout: "token/blacklist/",
         refresh: "token/refresh/",
     },
     api: {

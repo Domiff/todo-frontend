@@ -1,10 +1,10 @@
 import axios, { type AxiosRequestConfig } from "axios"
 
-import type { ApiClient, AuthRequest } from "@/interfaces/apiClientInterfaces.ts"
+import type { ApiClient } from "@/interfaces/apiClientInterfaces.ts"
 import { urls } from "@/services/urls.ts"
-import type { AuthResponse } from "@/types/authType.ts"
+import type { AuthRequest, AuthResponse } from "@/types/authTypes.ts"
 
-class FetchApiClient<TResponse, TRequest = object> implements ApiClient<TResponse, TRequest> {
+class FetchApiClient<TResponse, TRequest> implements ApiClient<TResponse, TRequest> {
     private readonly baseUrl: string
 
     constructor(baseUrl: string) {

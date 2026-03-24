@@ -2,7 +2,7 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { AuthRequest, LoginResponse } from "@/interfaces/apiClientInterfaces.ts"
+    import type { LoginResponse } from "@/interfaces/apiClientInterfaces.ts"
     import router from "@/router"
     import { login, loginErrorHandler } from "@/services/auth"
     import { useAuthStore } from "@/store/auth.ts"
