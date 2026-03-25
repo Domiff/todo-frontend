@@ -19,9 +19,9 @@
             password: password.value,
         }
         try {
-            const loginDAta = (await login(data)) as LoginResponse
-            const access: string = loginDAta.access
-            const refresh: string = loginDAta.refresh
+            const loginData = (await login(data)) as LoginResponse
+            const access: string = loginData.access
+            const refresh: string = loginData.refresh
             auth.setTokens(access, refresh)
             await router.push("/")
         } catch (error: unknown) {
