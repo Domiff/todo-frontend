@@ -1,11 +1,11 @@
-export interface RegisterErrorInterface {
+export interface RegisterError {
     username?: string
     first_name?: string
     last_name?: string
     email?: string
 }
 
-export interface LoginErrorInterface {
+export interface LoginError {
     username?: string
     password?: string
 }

@@ -1,13 +1,10 @@
 import axios from "axios"
 import type { Ref } from "vue"
 
-import type {
-    LoginErrorInterface,
-    RegisterErrorInterface,
-} from "@/interfaces/authErrorInterfaces.ts"
+import type { LoginError, RegisterError } from "@/interfaces/authErrorInterfaces.ts"
 
 export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) {
-    if (axios.isAxiosError<RegisterErrorInterface>(error)) {
+    if (axios.isAxiosError<RegisterError>(error)) {
         const serverData = error.response?.data
 
         if (serverData?.username) {
@@ -31,7 +28,7 @@ export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) 
 }
 
 export function loginErrorHandler(error: unknown, errorMessage: Ref<string>) {
-    if (axios.isAxiosError<LoginErrorInterface>(error)) {
+    if (axios.isAxiosError<LoginError>(error)) {
         if (error.response?.status === 400) {
             errorMessage.value = "Incorrect login or password!"
         } else {
