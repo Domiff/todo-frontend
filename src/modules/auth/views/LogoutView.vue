@@ -1,9 +1,9 @@
 <script setup lang="ts">
     import Navbar from "@/components/Navbar.vue"
-    import type { RefreshLogoutRequest } from "@/interfaces/authInterfaces.ts"
+    import type { RefreshLogoutRequest } from "@/modules/auth/schemas"
+    import { logout } from "@/modules/auth/services"
+    import { useAuthStore } from "@/modules/auth/store"
     import { router } from "@/router"
-    import { logout } from "@/services/auth"
-    import { useAuthStore } from "@/store/auth.ts"
 
     const auth = useAuthStore()
 
@@ -31,5 +31,3 @@
         </v-container>
     </v-app>
 </template>
-
-<style scoped></style>

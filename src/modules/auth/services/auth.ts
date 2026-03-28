@@ -1,11 +1,14 @@
 import type {
+    AuthRequest,
+    AuthResponse,
     LoginRequest,
     RefreshLogoutRequest,
     RegisterRequest,
-} from "@/interfaces/authInterfaces.ts"
-import { authClient } from "@/services/apiCient.ts"
+} from "@/modules/auth/schemas"
+import { FetchApiClient } from "@/services/apiCient.ts"
 import { urls } from "@/services/urls.ts"
-import type { AuthResponse } from "@/types/authTypes.ts"
+
+const authClient = new FetchApiClient<AuthResponse, AuthRequest>(urls.base)
 
 export async function register(data: RegisterRequest): Promise<AuthResponse | null> {
     return await authClient.post(urls.auth.register, data)

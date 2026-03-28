@@ -5,8 +5,7 @@ import { createApp } from "vue"
 import { createVuetify } from "vuetify"
 
 import App from "@/App.vue"
-
-import { router } from "./router"
+import { router } from "@/router"
 
 export const app = createApp(App)
 const vuetify = createVuetify()

@@ -1,8 +1,8 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
 
-import type { RefreshLogoutRequest, RefreshResponse } from "@/interfaces/authInterfaces.ts"
-import { refresh } from "@/services/auth"
+import type { RefreshLogoutRequest, RefreshResponse } from "@/modules/auth/schemas/auth.ts"
+import { refresh } from "@/modules/auth/services/auth"
 
 export const useAuthStore = defineStore("auth", () => {
     const accessToken = ref<string | null>(null)

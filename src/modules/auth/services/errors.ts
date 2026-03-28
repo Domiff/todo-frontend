@@ -1,7 +1,7 @@
 import axios from "axios"
 import type { Ref } from "vue"
 
-import type { LoginError, RegisterError } from "@/interfaces/authErrorInterfaces.ts"
+import type { LoginError, RegisterError } from "@/modules/auth/schemas/authErrors.ts"
 
 export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) {
     if (axios.isAxiosError<RegisterError>(error)) {

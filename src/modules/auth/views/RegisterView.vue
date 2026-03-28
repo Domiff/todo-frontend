@@ -2,10 +2,10 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { RegisterRequest, RegisterResponse } from "@/interfaces/authInterfaces.ts"
+    import type { RegisterRequest, RegisterResponse } from "@/modules/auth/schemas"
+    import { register, registerErrorHandler } from "@/modules/auth/services"
+    import { useAuthStore } from "@/modules/auth/store"
     import { router } from "@/router"
-    import { register, registerErrorHandler } from "@/services/auth"
-    import { useAuthStore } from "@/store/auth.ts"
 
     const username = ref("")
     const firstName = ref("")
