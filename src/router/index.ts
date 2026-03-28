@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 
-import { authRoutes } from "@/modules/auth/router"
+import { authRoutes } from "@/modules/auth/routes"
 import HomeView from "@/views/HomeView.vue"
 
 const routes = [{ path: "/", component: HomeView }, ...authRoutes]
