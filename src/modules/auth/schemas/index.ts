@@ -1,10 +1,7 @@
 export type {
-    AuthRequest,
-    AuthResponse,
+    LoginRefreshResponse,
     LoginRequest,
-    LoginResponse,
     RefreshLogoutRequest,
-    RefreshResponse,
     RegisterRequest,
     RegisterResponse,
 } from "@/modules/auth/schemas/auth.ts"

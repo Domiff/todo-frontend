@@ -2,7 +2,7 @@
     import { ref } from "vue"
 
     import Navbar from "@/components/Navbar.vue"
-    import type { LoginRequest, LoginResponse } from "@/modules/auth/schemas"
+    import type { LoginRefreshResponse, LoginRequest } from "@/modules/auth/schemas"
     import { login, loginErrorHandler } from "@/modules/auth/services"
     import { useAuthStore } from "@/modules/auth/store/index.ts"
     import { router } from "@/router"
@@ -19,7 +19,7 @@
             password: password.value,
         }
         try {
-            const loginData = (await login(data)) as LoginResponse
+            const loginData = (await login(data)) as LoginRefreshResponse
             const access: string = loginData.access
             const refresh: string = loginData.refresh
             auth.setTokens(access, refresh)

@@ -23,14 +23,7 @@ export interface RegisterResponse {
     }
 }
 
-export interface LoginResponse {
+export interface LoginRefreshResponse {
     access: string
     refresh: string
 }
-
-export interface RefreshResponse {
-    access: string
-}
-
-export type AuthRequest = RegisterRequest | LoginRequest | RefreshLogoutRequest
-export type AuthResponse = RegisterResponse | LoginResponse | RefreshResponse

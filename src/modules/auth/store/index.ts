@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
 
-import type { RefreshLogoutRequest, RefreshResponse } from "@/modules/auth/schemas/auth.ts"
+import type { RefreshLogoutRequest } from "@/modules/auth/schemas/auth.ts"
 import { refresh } from "@/modules/auth/services/auth"
 
 export const useAuthStore = defineStore("auth", () => {
@@ -27,7 +27,7 @@ export const useAuthStore = defineStore("auth", () => {
 
     async function updateAccess() {
         const refreshToken = { refresh: localStorage.getItem("refresh") } as RefreshLogoutRequest
-        const newAccess = (await refresh(refreshToken)) as RefreshResponse
+        const newAccess = await refresh(refreshToken)
         accessToken.value = newAccess.access
     }
 
