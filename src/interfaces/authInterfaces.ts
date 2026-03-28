@@ -20,7 +20,7 @@ export interface LoginRequest {
     password: string
 }
 
-export interface RefreshRequest {
+export interface RefreshLogoutRequest {
     refresh: string
 }
 
@@ -39,4 +39,8 @@ export interface LoginResponse {
 
 export interface RefreshResponse {
     access: string
+}
+
+export interface AuthHeader {
+    Authorization: string
 }

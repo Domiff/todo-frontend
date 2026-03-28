@@ -1,8 +1,8 @@
 import { defineStore } from "pinia"
 import { computed, ref } from "vue"
 
-import type { RefreshRequest, RefreshResponse } from "@/interfaces/authInterfaces.ts"
-import { refresh } from "@/services/auth/auth.ts"
+import type { RefreshLogoutRequest, RefreshResponse } from "@/interfaces/authInterfaces.ts"
+import { refresh } from "@/services/auth"
 
 export const useAuthStore = defineStore("auth", () => {
     const accessToken = ref<string | null>(null)
@@ -17,8 +17,16 @@ export const useAuthStore = defineStore("auth", () => {
         localStorage.setItem("refresh", refresh)
     }
 
+    function getRefreshToken() {
+        return localStorage.getItem("refresh")
+    }
+
+    function getAccessToken() {
+        return localStorage.getItem("access")
+    }
+
     async function updateAccess() {
-        const refreshToken = { refresh: localStorage.getItem("refresh") } as RefreshRequest
+        const refreshToken = { refresh: localStorage.getItem("refresh") } as RefreshLogoutRequest
         const newAccess = (await refresh(refreshToken)) as RefreshResponse
         accessToken.value = newAccess.access
     }
@@ -37,5 +45,7 @@ export const useAuthStore = defineStore("auth", () => {
         setTokens,
         updateAccess,
         logout,
+        getRefreshToken,
+        getAccessToken,
     }
 })

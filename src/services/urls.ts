@@ -2,9 +2,9 @@ export const urls = {
     base: "http://127.0.0.1:8000/",
     auth: {
         register: "auth/web/register/",
-        login: "token/",
-        logout: "token/blacklist/",
-        refresh: "token/refresh/",
+        login: "auth/token/",
+        logout: "auth/token/blacklist/",
+        refresh: "auth/token/refresh/",
     },
     api: {
         read: "api/list/",

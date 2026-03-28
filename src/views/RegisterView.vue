@@ -3,7 +3,7 @@
 
     import Navbar from "@/components/Navbar.vue"
     import type { RegisterRequest, RegisterResponse } from "@/interfaces/authInterfaces.ts"
-    import router from "@/router"
+    import { router } from "@/router"
     import { register, registerErrorHandler } from "@/services/auth"
     import { useAuthStore } from "@/store/auth.ts"
 
