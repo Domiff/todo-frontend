@@ -22,7 +22,6 @@
         <v-container class="d-flex justify-center align-center" style="height: 80vh">
             <v-card width="500" class="pa-6">
                 <v-card-title class="text-h2 text-center">Logout</v-card-title>
-                <v-card-text class="text-h5 text-center">Are you sure?</v-card-text>
                 <v-card-text>
                     <v-form v-on:submit.prevent="handleLogout">
                         <v-btn type="submit" block>Logout</v-btn>
