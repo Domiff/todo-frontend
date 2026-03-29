@@ -1,7 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import Navbar from "@/components/Navbar.vue"
+</script>
 
 <template>
-    <RouterView />
-</template>
+    <v-app>
+        <Navbar />
 
-<style scoped></style>
+        <v-main>
+            <RouterView class="bg-purple-lighten-5" />
+        </v-main>
+    </v-app>
+</template>
