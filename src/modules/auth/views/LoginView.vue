@@ -22,7 +22,7 @@
             const access: string = loginData.access
             const refresh: string = loginData.refresh
             auth.setTokens(access, refresh)
-            await router.push("/")
+            await router.push("/tasks")
         } catch (error: unknown) {
             loginErrorHandler(error, errorMessage)
         }

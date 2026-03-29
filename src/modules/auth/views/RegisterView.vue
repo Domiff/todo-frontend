@@ -41,7 +41,7 @@
             const access: string = registerData.tokens.access
             const refresh: string = registerData.tokens.refresh
             auth.setTokens(access, refresh)
-            await router.push("/")
+            await router.push("/tasks")
         } catch (error: unknown) {
             registerErrorHandler(error, errorMessage)
         }
