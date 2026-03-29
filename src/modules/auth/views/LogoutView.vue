@@ -1,5 +1,4 @@
 <script setup lang="ts">
-    import Navbar from "@/components/Navbar.vue"
     import type { RefreshLogoutRequest } from "@/modules/auth/schemas"
     import { logout } from "@/modules/auth/services"
     import { useAuthStore } from "@/modules/auth/store"
@@ -18,7 +17,6 @@
 
 <template>
     <v-app>
-        <Navbar />
         <v-container class="d-flex justify-center align-center" style="height: 80vh">
             <v-card width="500" class="pa-6">
                 <v-card-title class="text-h2 text-center">Logout</v-card-title>

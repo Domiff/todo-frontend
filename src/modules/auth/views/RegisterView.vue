@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import { ref } from "vue"
 
-    import Navbar from "@/components/Navbar.vue"
     import type { RegisterRequest, RegisterResponse } from "@/modules/auth/schemas"
     import { register, registerErrorHandler } from "@/modules/auth/services"
     import { useAuthStore } from "@/modules/auth/store"
@@ -51,9 +50,6 @@
 
 <template>
     <v-app>
-        <Navbar />
-        <br />
-        <br />
         <v-container class="d-flex justify-center align-center" style="height: 80vh">
             <v-card width="500" class="pa-6">
                 <v-card-title class="text-h5 text-center">Register</v-card-title>
