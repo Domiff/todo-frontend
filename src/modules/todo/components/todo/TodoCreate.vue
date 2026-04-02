@@ -76,7 +76,7 @@
                             />
                         </v-menu>
 
-                        <v-menu v-model="timeMenu" :close-on-content-click="false">
+                        <v-menu v-model="timeMenu" v-bind:close-on-content-click="false">
                             <template v-slot:activator="{ props }">
                                 <v-text-field
                                     v-bind="props"
