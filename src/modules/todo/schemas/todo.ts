@@ -4,11 +4,12 @@ interface BaseTask {
     category: string
 }
 
-export interface TasksList extends BaseTask {
+export interface TaskDetail extends BaseTask {
     pk: number
     body: string
     completed: boolean
     created_at: string
+    updated_at: string
 }
 
 export interface TaskCreate extends BaseTask {
@@ -16,9 +17,9 @@ export interface TaskCreate extends BaseTask {
 }
 
 export interface TaskUpdate extends BaseTask {
+    pk: number
     body: string
-    deadline: string
-    completed: string
+    completed: boolean
 }
 
 export type AuthHeader = Record<string, string>
