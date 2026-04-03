@@ -58,7 +58,12 @@
 
                 <v-card-text>
                     <v-form v-on:submit.prevent="handleUpdate" class="d-flex flex-column ga-4">
-                        <v-text-field v-model="title" variant="outlined" rounded="lg" />
+                        <v-text-field
+                            label="Title"
+                            v-model="title"
+                            variant="outlined"
+                            rounded="lg"
+                        />
 
                         <v-textarea label="Body" v-model="body" variant="outlined" rounded="lg" />
 
