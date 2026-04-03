@@ -3,6 +3,7 @@
 
     import type { TaskCreate } from "@/modules/todo/schemas/todo.ts"
     import { taskCreateView } from "@/modules/todo/services/todo.ts"
+    import { formatDate } from "@/modules/todo/services/utils.ts"
 
     const dialog = ref(false)
 
@@ -10,7 +11,7 @@
     const category = ref("")
     const body = ref("")
 
-    const date = ref<Date | null>(null)
+    const date = ref<string>("")
     const time = ref<string>("")
 
     const dateMenu = ref(false)
@@ -63,7 +64,7 @@
                                 <v-text-field
                                     v-bind="props"
                                     label="Select Date"
-                                    v-bind:model-value="date"
+                                    v-bind:model-value="formatDate(date)"
                                     readonly
                                     variant="outlined"
                                     rounded="lg"
