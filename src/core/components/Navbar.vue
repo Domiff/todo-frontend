@@ -109,33 +109,3 @@
         </template>
     </v-navigation-drawer>
 </template>
-
-<style scoped>
-    .nav-btn {
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        font-weight: 500;
-    }
-
-    .nav-btn:hover {
-        transform: translateX(8px);
-        background-color: rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .nav-btn.v-btn--active {
-        background-color: rgba(255, 255, 255, 0.12) !important;
-        font-weight: 600;
-    }
-
-    .v-btn--active::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 4px;
-        height: 28px;
-        background-color: rgb(255, 255, 255);
-        border-top-right-radius: 9999px;
-        border-bottom-right-radius: 9999px;
-    }
-</style>
