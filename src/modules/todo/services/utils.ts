@@ -9,3 +9,21 @@ export function makeAuthHeader(): AuthHeader | undefined {
     }
     return { Authorization: `Bearer ${accessToken}` }
 }
+
+export function formatDate(date: string | null) {
+    if (!date) {
+        return ""
+    }
+    const newDate = new Date(date)
+    return newDate.toDateString()
+}
+
+export function formatTime(date: string | null) {
+    if (!date) {
+        return ""
+    }
+    const newDate = new Date(date)
+    const h = String(newDate.getHours()).padStart(2, "0")
+    const min = String(newDate.getMinutes()).padStart(2, "0")
+    return `${h}:${min}`
+}
