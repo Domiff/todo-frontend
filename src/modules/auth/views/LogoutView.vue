@@ -1,8 +1,8 @@
 <script setup lang="ts">
+    import { router } from "@/core/router"
     import type { RefreshLogoutRequest } from "@/modules/auth/schemas"
     import { logout } from "@/modules/auth/services"
     import { useAuthStore } from "@/modules/auth/store"
-    import { router } from "@/router"
 
     const auth = useAuthStore()
 

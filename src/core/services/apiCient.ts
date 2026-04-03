@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 
-import type { ApiClient } from "@/schemas"
+import type { ApiClient } from "@/core/schemas"
 
 export class FetchApiClient implements ApiClient {
     private readonly instance: AxiosInstance

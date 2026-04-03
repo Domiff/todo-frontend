@@ -1,3 +1,5 @@
+import { FetchApiClient } from "@/core/services/apiCient.ts"
+import { urls } from "@/core/services/urls.ts"
 import type {
     LoginRefreshResponse,
     LoginRequest,
@@ -5,8 +7,6 @@ import type {
     RegisterRequest,
     RegisterResponse,
 } from "@/modules/auth/schemas"
-import { FetchApiClient } from "@/services/apiCient.ts"
-import { urls } from "@/services/urls.ts"
 
 const authClient = new FetchApiClient(urls.base)
 

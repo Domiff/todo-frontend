@@ -1,7 +1,7 @@
+import { FetchApiClient } from "@/core/services/apiCient.ts"
+import { urls } from "@/core/services/urls.ts"
 import type { TaskCreate, TaskDetail, TaskUpdate } from "@/modules/todo/schemas/todo.ts"
 import { makeAuthHeader } from "@/modules/todo/services/utils.ts"
-import { FetchApiClient } from "@/services/apiCient.ts"
-import { urls } from "@/services/urls.ts"
 
 const todoClient = new FetchApiClient(urls.base)
 

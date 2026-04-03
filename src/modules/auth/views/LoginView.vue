@@ -1,10 +1,10 @@
 <script setup lang="ts">
     import { ref } from "vue"
 
+    import { router } from "@/core/router"
     import type { LoginRefreshResponse, LoginRequest } from "@/modules/auth/schemas"
     import { login, loginErrorHandler } from "@/modules/auth/services"
     import { useAuthStore } from "@/modules/auth/store/index.ts"
-    import { router } from "@/router"
 
     const username = ref("")
     const password = ref("")
