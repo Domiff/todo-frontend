@@ -4,10 +4,9 @@
 
 <template>
     <v-app>
-        <Navbar />
-
         <v-main>
-            <RouterView class="bg-purple-lighten-5" />
+            <Navbar />
+            <RouterView />
         </v-main>
     </v-app>
 </template>

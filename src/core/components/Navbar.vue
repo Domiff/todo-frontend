@@ -1,11 +1,28 @@
+<script setup lang="ts">
+    import { computed } from "vue"
+    import { useTheme } from "vuetify/framework"
+
+    const theme = useTheme()
+
+    function toggleTheme() {
+        theme.global.name.value = theme.global.current.value.dark ? "lightPurple" : "darkPurple"
+    }
+    const isDark = computed(() => {
+        return theme.global.current.value.dark ? "🌞️" : "🌚"
+    })
+</script>
+
 <template>
-    <v-navigation-drawer color="purple-darken-2" width="280" permanent elevation="4" app>
+    <v-navigation-drawer width="280" permanent elevation="4" app>
         <div class="pa-6 pb-4">
-            <div class="d-flex align-center gap-3">
+            <div class="d-flex justify-space-between gap-3">
                 <div>
-                    <div class="text-h5 font-weight-bold text-white">ToDo</div>
+                    <div class="text-h5 font-weight-bold text-purple-lighten-3">ToDo</div>
                     <div class="text-caption text-purple-lighten-3">Stay organized</div>
                 </div>
+                <v-btn elevation="0" icon="mdi-account" size="small" @click="toggleTheme" hover>
+                    {{ isDark }}
+                </v-btn>
             </div>
         </div>
 
@@ -21,7 +38,7 @@
                     to="/"
                     variant="text"
                     prepend-icon="mdi-home"
-                    class="justify-start text-purple-lighten-5 nav-btn"
+                    class="justify-start text-purple-lighten-3 nav-btn"
                     rounded="lg"
                     active-color="purple-lighten-1"
                 >
@@ -32,7 +49,7 @@
                     to="/tasks"
                     variant="text"
                     prepend-icon="mdi-format-list-checks"
-                    class="justify-start text-purple-lighten-5 nav-btn"
+                    class="justify-start text-purple-lighten-3 nav-btn"
                     rounded="lg"
                     active-color="purple-lighten-1"
                 >
