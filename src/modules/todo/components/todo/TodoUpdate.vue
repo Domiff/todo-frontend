@@ -138,7 +138,7 @@
 
                         <v-btn
                             type="submit"
-                            color="info"
+                            color="primary"
                             class="mt-2 action-btn update-btn"
                             rounded="lg"
                             elevation="1"
