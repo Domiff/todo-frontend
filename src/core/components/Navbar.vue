@@ -2,13 +2,16 @@
     import { computed } from "vue"
     import { useTheme } from "vuetify/framework"
 
+    import MoonIcon from "@/core/components/icons/MoonIcon.vue"
+    import SunIcon from "@/core/components/icons/SunIcon.vue"
+
     const theme = useTheme()
 
     function toggleTheme() {
         theme.global.name.value = theme.global.current.value.dark ? "lightPurple" : "darkPurple"
     }
     const isDark = computed(() => {
-        return theme.global.current.value.dark ? "🌞️" : "🌚"
+        return theme.global.current.value.dark ? true : false
     })
 </script>
 
@@ -28,8 +31,21 @@
                     variant="tonal"
                     class="theme-switch-btn"
                     v-on:click="toggleTheme"
+                    v-if="isDark"
                 >
-                    {{ isDark }}
+                    <SunIcon />
+                </v-btn>
+                <v-btn
+                    elevation="0"
+                    icon="mdi-theme-light-dark"
+                    size="small"
+                    color="primary"
+                    variant="tonal"
+                    class="theme-switch-btn"
+                    v-on:click="toggleTheme"
+                    v-else
+                >
+                    <MoonIcon />
                 </v-btn>
             </div>
         </div>
