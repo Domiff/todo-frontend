@@ -4,19 +4,26 @@
 
     import MoonIcon from "@/core/components/icons/MoonIcon.vue"
     import SunIcon from "@/core/components/icons/SunIcon.vue"
+    import { useAuthStore } from "@/modules/auth/store"
 
     const theme = useTheme()
+    const auth = useAuthStore()
 
     function toggleTheme() {
         theme.global.name.value = theme.global.current.value.dark ? "lightPurple" : "darkPurple"
     }
+
     const currentIcon = computed(() => {
         return theme.global.current.value.dark ? SunIcon : MoonIcon
+    })
+
+    const isAuthenticated = computed(() => {
+        return !!auth.isAuthenticated
     })
 </script>
 
 <template>
-    <v-navigation-drawer width="280" permanent elevation="4" app class="navbar-drawer">
+    <v-navigation-drawer max-width="280" permanent elevation="4" app class="navbar-drawer">
         <div class="pa-6 pb-4">
             <div class="d-flex justify-space-between gap-3">
                 <div>
@@ -61,6 +68,7 @@
                     class="justify-start nav-btn"
                     rounded="lg"
                     active-color="primary"
+                    v-if="isAuthenticated"
                 >
                     Tasks
                 </v-btn>
@@ -78,6 +86,7 @@
                     class="justify-start nav-btn"
                     rounded="lg"
                     active-color="primary"
+                    v-if="!isAuthenticated"
                 >
                     Registration
                 </v-btn>
@@ -89,6 +98,7 @@
                     class="justify-start nav-btn"
                     rounded="lg"
                     active-color="primary"
+                    v-if="!isAuthenticated"
                 >
                     Login
                 </v-btn>
@@ -100,6 +110,7 @@
                     class="justify-start nav-btn"
                     rounded="lg"
                     active-color="primary"
+                    v-if="isAuthenticated"
                 >
                     Logout
                 </v-btn>

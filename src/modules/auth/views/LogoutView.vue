@@ -16,7 +16,7 @@
         try {
             await logout(data)
             auth.logout()
-            await router.push("/")
+            await router.push("/login")
         } finally {
             isSubmitting.value = false
         }
