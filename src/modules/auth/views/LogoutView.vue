@@ -56,7 +56,7 @@
                             color="primary"
                             block
                             v-bind:disabled="isSubmitting"
-                            @click="goBack"
+                            v-on:click="goBack"
                         >
                             Stay signed in
                         </v-btn>

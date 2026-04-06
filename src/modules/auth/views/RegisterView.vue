@@ -54,7 +54,7 @@
             <v-card width="500" class="pa-6">
                 <v-card-title class="text-h5 text-center">Register</v-card-title>
                 <v-card-text>
-                    <v-form @submit.prevent="handleRegister">
+                    <v-form v-on:submit.prevent="handleRegister">
                         <v-text-field
                             label="Username"
                             v-model="username"

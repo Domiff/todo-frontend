@@ -35,7 +35,7 @@
             <v-card width="500" class="pa-6">
                 <v-card-title class="text-h5 text-center">Login</v-card-title>
                 <v-card-text>
-                    <v-form @submit.prevent="handleLogin">
+                    <v-form v-on:submit.prevent="handleLogin">
                         <v-text-field v-model="username" label="Username" required />
                         <v-text-field
                             v-model="password"

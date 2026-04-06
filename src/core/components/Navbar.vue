@@ -27,7 +27,7 @@
                     color="primary"
                     variant="tonal"
                     class="theme-switch-btn"
-                    @click="toggleTheme"
+                    v-on:click="toggleTheme"
                 >
                     {{ isDark }}
                 </v-btn>
@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <template #append>
+        <template v-slot:append>
             <div class="pa-6">
                 <v-divider class="mb-4 opacity-50 nav-divider" />
                 <div class="text-center">
