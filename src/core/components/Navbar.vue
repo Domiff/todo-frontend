@@ -10,8 +10,8 @@
     function toggleTheme() {
         theme.global.name.value = theme.global.current.value.dark ? "lightPurple" : "darkPurple"
     }
-    const isDark = computed(() => {
-        return theme.global.current.value.dark ? true : false
+    const currentIcon = computed(() => {
+        return theme.global.current.value.dark ? SunIcon : MoonIcon
     })
 </script>
 
@@ -31,21 +31,8 @@
                     variant="tonal"
                     class="theme-switch-btn"
                     v-on:click="toggleTheme"
-                    v-if="isDark"
                 >
-                    <SunIcon />
-                </v-btn>
-                <v-btn
-                    elevation="0"
-                    icon="mdi-theme-light-dark"
-                    size="small"
-                    color="primary"
-                    variant="tonal"
-                    class="theme-switch-btn"
-                    v-on:click="toggleTheme"
-                    v-else
-                >
-                    <MoonIcon />
+                    <component v-bind:is="currentIcon" />
                 </v-btn>
             </div>
         </div>
