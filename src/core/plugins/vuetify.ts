@@ -1,45 +1,51 @@
+import { amber, blueGrey, deepPurple, green, indigo, purple, red, shades } from "vuetify/util/colors"
+
 export const lightPurple = {
     dark: false,
     colors: {
-        background: "#F8F5FF",
-        surface: "#FFFFFF",
+        background: deepPurple.lighten5,
+        surface: shades.white,
+        "surface-bright": shades.white,
+        "surface-variant": deepPurple.lighten4,
 
-        primary: "#7C3AED",
-        "primary-darken-1": "#6D28D9",
+        primary: deepPurple.lighten1,
+        "primary-darken-1": deepPurple.base,
 
-        secondary: "#C084FC",
+        secondary: purple.lighten2,
 
-        accent: "#E879F9",
+        accent: deepPurple.lighten3,
 
-        error: "#EF4444",
-        info: "#3B82F6",
-        success: "#10B981",
-        warning: "#F59E0B",
+        error: red.base,
+        info: indigo.base,
+        success: green.darken1,
+        warning: amber.darken1,
 
-        "text-primary": "#1F1147",
-        "text-secondary": "#6B5CA5",
+        "text-primary": deepPurple.darken4,
+        "text-secondary": deepPurple.darken1,
     },
 }
 
 export const darkPurple = {
     dark: true,
     colors: {
-        background: "#0F0B1A",
-        surface: "#1A132B",
+        background: deepPurple.darken4,
+        surface: deepPurple.darken3,
+        "surface-bright": deepPurple.darken2,
+        "surface-variant": deepPurple.darken2,
 
-        primary: "#A855F7",
-        "primary-darken-1": "#9333EA",
+        primary: deepPurple.lighten2,
+        "primary-darken-1": deepPurple.lighten1,
 
-        secondary: "#C084FC",
+        secondary: purple.lighten2,
 
-        accent: "#E879F9",
+        accent: deepPurple.lighten4,
 
-        error: "#F87171",
-        info: "#60A5FA",
-        success: "#34D399",
-        warning: "#FBBF24",
+        error: red.lighten2,
+        info: indigo.lighten2,
+        success: green.lighten1,
+        warning: amber.lighten1,
 
-        "text-primary": "#E9D5FF",
-        "text-secondary": "#BFA6FF",
+        "text-primary": shades.white,
+        "text-secondary": deepPurple.lighten3,
     },
 }

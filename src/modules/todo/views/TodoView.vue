@@ -35,17 +35,17 @@
 
 <template>
     <v-app>
-        <v-container class="pa-8">
-            <v-row align="center" justify="space-between">
-                <h1>List tasks</h1>
+        <v-container class="pa-8 todo-page">
+            <v-row align="center" justify="space-between" class="mb-2">
+                <h1 class="page-title">List tasks</h1>
                 <TodoCreate v-on:add-task="addNewTask" />
             </v-row>
 
-            <v-row gap="16">
+            <v-row class="ga-3">
                 <v-col v-for="todo in todoItems" v-bind:key="todo.pk" cols="12" sm="4">
-                    <v-card rounded="lg" hover>
+                    <v-card rounded="xl" hover class="task-card">
                         <TodoDetail v-bind:todo="todo" />
-                        <div class="d-flex row align-text-center">
+                        <div class="d-flex align-center px-2 pb-2 task-actions">
                             <TodoUpdate v-bind:todo="todo" v-on:update-task="updateTask" />
                             <TodoDelete v-bind:todo="todo" v-on:delete-task="deleteTask" />
                         </div>
@@ -55,3 +55,28 @@
         </v-container>
     </v-app>
 </template>
+
+<style scoped>
+    .todo-page {
+        max-width: 1240px;
+    }
+
+    .page-title {
+        color: rgb(var(--v-theme-text-primary));
+        font-size: clamp(1.6rem, 2.2vw, 2rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+    }
+
+    .task-card {
+        background: color-mix(
+            in srgb,
+            rgb(var(--v-theme-surface)) 94%,
+            rgb(var(--v-theme-background)) 6%
+        );
+    }
+
+    .task-actions {
+        gap: 8px;
+    }
+</style>

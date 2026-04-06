@@ -42,7 +42,15 @@
 
 <template>
     <div class="text-center pa-4">
-        <v-btn v-on:click="dialog = true"> Create a new task </v-btn>
+        <v-btn
+            v-on:click="dialog = true"
+            color="primary"
+            variant="flat"
+            rounded="lg"
+            class="action-btn"
+        >
+            Create a new task
+        </v-btn>
 
         <v-dialog v-model="dialog" width="500">
             <v-card class="pa-6 rounded-xl">
@@ -107,9 +115,10 @@
                         <v-btn
                             type="submit"
                             color="primary"
-                            class="mt-2"
+                            class="mt-2 action-btn"
                             rounded="lg"
                             elevation="1"
+                            variant="flat"
                             block
                         >
                             Create task
@@ -120,3 +129,10 @@
         </v-dialog>
     </div>
 </template>
+
+<style scoped>
+    .action-btn {
+        font-size: 0.92rem;
+        font-weight: 700;
+    }
+</style>

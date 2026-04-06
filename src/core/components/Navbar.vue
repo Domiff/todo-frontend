@@ -13,34 +13,40 @@
 </script>
 
 <template>
-    <v-navigation-drawer width="280" permanent elevation="4" app>
+    <v-navigation-drawer width="280" permanent elevation="4" app class="navbar-drawer">
         <div class="pa-6 pb-4">
             <div class="d-flex justify-space-between gap-3">
                 <div>
-                    <div class="text-h5 font-weight-bold text-purple-lighten-3">ToDo</div>
-                    <div class="text-caption text-purple-lighten-3">Stay organized</div>
+                    <div class="text-h5 font-weight-bold nav-title">ToDo</div>
+                    <div class="text-caption nav-subtitle">Stay organized</div>
                 </div>
-                <v-btn elevation="0" icon="mdi-account" size="small" @click="toggleTheme" hover>
+                <v-btn
+                    elevation="0"
+                    icon="mdi-theme-light-dark"
+                    size="small"
+                    color="primary"
+                    variant="tonal"
+                    class="theme-switch-btn"
+                    @click="toggleTheme"
+                >
                     {{ isDark }}
                 </v-btn>
             </div>
         </div>
 
-        <v-divider color="purple-lighten-1" class="mx-6 opacity-50" />
+        <v-divider class="mx-6 opacity-50 nav-divider" />
 
         <div class="px-4 py-6">
-            <div class="text-uppercase text-xs font-weight-medium text-purple-lighten-3 mb-3 px-4">
-                Main
-            </div>
+            <div class="text-uppercase text-xs font-weight-medium nav-group mb-3 px-4">Main</div>
 
             <div class="d-flex flex-column ga-1">
                 <v-btn
                     to="/"
                     variant="text"
                     prepend-icon="mdi-home"
-                    class="justify-start text-purple-lighten-3 nav-btn"
+                    class="justify-start nav-btn"
                     rounded="lg"
-                    active-color="purple-lighten-1"
+                    active-color="primary"
                 >
                     Home
                 </v-btn>
@@ -49,28 +55,26 @@
                     to="/tasks"
                     variant="text"
                     prepend-icon="mdi-format-list-checks"
-                    class="justify-start text-purple-lighten-3 nav-btn"
+                    class="justify-start nav-btn"
                     rounded="lg"
-                    active-color="purple-lighten-1"
+                    active-color="primary"
                 >
                     Tasks
                 </v-btn>
             </div>
 
-            <v-divider color="purple-lighten-1" class="my-8 mx-4 opacity-30" />
+            <v-divider class="my-8 mx-4 opacity-30 nav-divider" />
 
-            <div class="text-uppercase text-xs font-weight-medium text-purple-lighten-3 mb-3 px-4">
-                Account
-            </div>
+            <div class="text-uppercase text-xs font-weight-medium nav-group mb-3 px-4">Account</div>
 
             <div class="d-flex flex-column ga-1">
                 <v-btn
                     to="/register"
                     variant="text"
                     prepend-icon="mdi-account-plus"
-                    class="justify-start text-purple-lighten-5 nav-btn"
+                    class="justify-start nav-btn"
                     rounded="lg"
-                    active-color="purple-lighten-1"
+                    active-color="primary"
                 >
                     Registration
                 </v-btn>
@@ -79,9 +83,9 @@
                     to="/login"
                     variant="text"
                     prepend-icon="mdi-login-variant"
-                    class="justify-start text-purple-lighten-5 nav-btn"
+                    class="justify-start nav-btn"
                     rounded="lg"
-                    active-color="purple-lighten-1"
+                    active-color="primary"
                 >
                     Login
                 </v-btn>
@@ -90,9 +94,9 @@
                     to="/logout"
                     variant="text"
                     prepend-icon="mdi-login-variant"
-                    class="justify-start text-purple-lighten-5 nav-btn"
+                    class="justify-start nav-btn"
                     rounded="lg"
-                    active-color="purple-lighten-1"
+                    active-color="primary"
                 >
                     Logout
                 </v-btn>
@@ -101,11 +105,53 @@
 
         <template #append>
             <div class="pa-6">
-                <v-divider color="purple-lighten-1" class="mb-4 opacity-50" />
+                <v-divider class="mb-4 opacity-50 nav-divider" />
                 <div class="text-center">
-                    <span class="text-purple-lighten-3 text-caption"> © 2026 ToDo App </span>
+                    <span class="text-caption nav-footer"> © 2026 ToDo App </span>
                 </div>
             </div>
         </template>
     </v-navigation-drawer>
 </template>
+
+<style scoped>
+    .navbar-drawer {
+        background: color-mix(
+            in srgb,
+            rgb(var(--v-theme-surface)) 92%,
+            rgb(var(--v-theme-background)) 8%
+        );
+        color: rgb(var(--v-theme-text-primary));
+    }
+
+    .nav-title {
+        color: rgb(var(--v-theme-text-primary));
+    }
+
+    .nav-subtitle,
+    .nav-group,
+    .nav-footer {
+        color: rgb(var(--v-theme-text-secondary));
+    }
+
+    .nav-divider {
+        border-color: color-mix(in srgb, rgb(var(--v-theme-primary)) 24%, transparent);
+    }
+
+    .theme-switch-btn {
+        min-width: 36px;
+    }
+
+    .nav-btn {
+        color: rgb(var(--v-theme-text-primary));
+        font-weight: 600;
+    }
+
+    .nav-btn :deep(.v-icon) {
+        color: color-mix(in srgb, rgb(var(--v-theme-primary)) 86%, white 14%);
+    }
+
+    .nav-btn:hover {
+        background: color-mix(in srgb, rgb(var(--v-theme-primary)) 12%, transparent);
+    }
+</style>
