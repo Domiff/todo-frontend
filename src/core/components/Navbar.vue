@@ -10,7 +10,7 @@
     const auth = useAuthStore()
 
     function toggleTheme() {
-        theme.global.name.value = theme.global.current.value.dark ? "lightPurple" : "darkPurple"
+        theme.toggle(["lightPurple", "darkPurple"])
     }
 
     const currentIcon = computed(() => {
