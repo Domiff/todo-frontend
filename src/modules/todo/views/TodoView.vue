@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import { onMounted, ref } from "vue"
 
+    import { router } from "@/core/router"
+    import { useAuthStore } from "@/modules/auth/store"
     import TodoCreate from "@/modules/todo/components/todo/TodoCreate.vue"
     import TodoDelete from "@/modules/todo/components/todo/TodoDelete.vue"
     import TodoDetail from "@/modules/todo/components/todo/TodoDetail.vue"
@@ -9,6 +11,8 @@
     import { tasksListView } from "@/modules/todo/services/todo.ts"
 
     const todoItems = ref<TaskDetail[]>([])
+
+    const auth = useAuthStore()
 
     function addNewTask(task: TaskDetail) {
         todoItems.value.push(task)
@@ -29,7 +33,18 @@
     }
 
     onMounted(async () => {
-        todoItems.value = await tasksListView()
+        try {
+            todoItems.value = await tasksListView()
+        } catch {
+            try {
+                await auth.updateAccess()
+                todoItems.value = await tasksListView()
+            } catch {
+                auth.logout()
+                window.alert("You are not logged in")
+                await router.push("login")
+            }
+        }
     })
 </script>
 
