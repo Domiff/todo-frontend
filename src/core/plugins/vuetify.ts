@@ -1,4 +1,4 @@
-import { amber, blueGrey, deepPurple, green, indigo, purple, red, shades } from "vuetify/util/colors"
+import { amber, deepPurple, green, indigo, purple, red, shades } from "vuetify/util/colors"
 
 export const lightPurple = {
     dark: false,
