@@ -1,3 +1,5 @@
+import { useDate } from "vuetify/framework"
+
 import { useAuthStore } from "@/modules/auth/store"
 import type { AuthHeader } from "@/modules/todo/schemas/todo.ts"
 
@@ -14,8 +16,8 @@ export function formatDate(date: string | null) {
     if (!date) {
         return ""
     }
-    const newDate = new Date(date)
-    return newDate.toDateString()
+    const newDate = useDate()
+    return newDate.format(date, "fullDateWithWeekday")
 }
 
 export function formatTime(date: string | null) {
