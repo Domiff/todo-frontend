@@ -1,5 +1,5 @@
 export const urls = {
-    base: "http://127.0.0.1:8000/",
+    base: import.meta.env.VITE_API_URL,
     auth: {
         register: "auth/web/register/",
         login: "auth/token/",
