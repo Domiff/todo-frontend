@@ -49,60 +49,58 @@
 </script>
 
 <template>
-    <v-app>
-        <v-container class="d-flex justify-center align-center" style="height: 80vh">
-            <v-card width="500" class="pa-6">
-                <v-card-title class="text-h5 text-center">Register</v-card-title>
-                <v-card-text>
-                    <v-form v-on:submit.prevent="handleRegister">
-                        <v-text-field
-                            label="Username"
-                            v-model="username"
-                            v-bind:rules="[required]"
-                            required
-                        />
-                        <v-text-field
-                            label="Firstname"
-                            v-model="firstName"
-                            v-bind:rules="[required]"
-                            required
-                        />
-                        <v-text-field
-                            label="Lastname"
-                            v-model="lastName"
-                            v-bind:rules="[required]"
-                            required
-                        />
-                        <v-text-field
-                            label="Email"
-                            v-model="email"
-                            type="email"
-                            v-bind:rules="[required, validEmail]"
-                            required
-                        />
-                        <v-text-field
-                            label="Password"
-                            v-model="password1"
-                            type="password"
-                            v-bind:rules="[required]"
-                            required
-                        />
-                        <v-text-field
-                            label="Confirm password"
-                            v-model="password2"
-                            type="password"
-                            v-bind:rules="[required, passwordsMatch]"
-                            required
-                        />
+    <v-container class="d-flex justify-center align-center" style="height: 80vh">
+        <v-card width="500" class="pa-6">
+            <v-card-title class="text-h5 text-center">Register</v-card-title>
+            <v-card-text>
+                <v-form v-on:submit.prevent="handleRegister">
+                    <v-text-field
+                        label="Username"
+                        v-model="username"
+                        v-bind:rules="[required]"
+                        required
+                    />
+                    <v-text-field
+                        label="Firstname"
+                        v-model="firstName"
+                        v-bind:rules="[required]"
+                        required
+                    />
+                    <v-text-field
+                        label="Lastname"
+                        v-model="lastName"
+                        v-bind:rules="[required]"
+                        required
+                    />
+                    <v-text-field
+                        label="Email"
+                        v-model="email"
+                        type="email"
+                        v-bind:rules="[required, validEmail]"
+                        required
+                    />
+                    <v-text-field
+                        label="Password"
+                        v-model="password1"
+                        type="password"
+                        v-bind:rules="[required]"
+                        required
+                    />
+                    <v-text-field
+                        label="Confirm password"
+                        v-model="password2"
+                        type="password"
+                        v-bind:rules="[required, passwordsMatch]"
+                        required
+                    />
 
-                        <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
-                            {{ errorMessage }}
-                        </v-alert>
+                    <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
+                        {{ errorMessage }}
+                    </v-alert>
 
-                        <v-btn type="submit" color="primary" class="mt-4" block>Register</v-btn>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-container>
-    </v-app>
+                    <v-btn type="submit" color="primary" class="mt-4" block>Register</v-btn>
+                </v-form>
+            </v-card-text>
+        </v-card>
+    </v-container>
 </template>

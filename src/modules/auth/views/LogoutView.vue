@@ -28,43 +28,41 @@
 </script>
 
 <template>
-    <v-app>
-        <v-container class="logout-wrap d-flex justify-center align-center">
-            <v-card width="520" class="pa-8 rounded-xl logout-card">
-                <v-card-title class="text-h4 text-center logout-title">Sign out</v-card-title>
-                <v-card-subtitle class="text-center logout-subtitle">
-                    You are about to end your current session.
-                </v-card-subtitle>
+    <v-container class="logout-wrap d-flex justify-center align-center">
+        <v-card width="520" class="pa-8 rounded-xl logout-card">
+            <v-card-title class="text-h4 text-center logout-title">Sign out</v-card-title>
+            <v-card-subtitle class="text-center logout-subtitle">
+                You are about to end your current session.
+            </v-card-subtitle>
 
-                <v-card-text class="pt-6">
-                    <v-form v-on:submit.prevent="handleLogout" class="d-flex flex-column ga-3">
-                        <v-btn
-                            type="submit"
-                            color="error"
-                            rounded="lg"
-                            size="large"
-                            variant="flat"
-                            block
-                            v-bind:loading="isSubmitting"
-                        >
-                            Logout
-                        </v-btn>
-                        <v-btn
-                            rounded="lg"
-                            size="large"
-                            variant="tonal"
-                            color="primary"
-                            block
-                            v-bind:disabled="isSubmitting"
-                            v-on:click="goBack"
-                        >
-                            Stay signed in
-                        </v-btn>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-container>
-    </v-app>
+            <v-card-text class="pt-6">
+                <v-form v-on:submit.prevent="handleLogout" class="d-flex flex-column ga-3">
+                    <v-btn
+                        type="submit"
+                        color="error"
+                        rounded="lg"
+                        size="large"
+                        variant="flat"
+                        block
+                        v-bind:loading="isSubmitting"
+                    >
+                        Logout
+                    </v-btn>
+                    <v-btn
+                        rounded="lg"
+                        size="large"
+                        variant="flat"
+                        color="primary"
+                        block
+                        v-bind:disabled="isSubmitting"
+                        v-on:click="goBack"
+                    >
+                        Stay signed in
+                    </v-btn>
+                </v-form>
+            </v-card-text>
+        </v-card>
+    </v-container>
 </template>
 
 <style scoped>

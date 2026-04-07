@@ -41,98 +41,95 @@
 </script>
 
 <template>
-    <div class="text-center pa-4">
-        <v-btn
-            v-on:click="dialog = true"
-            color="primary"
-            variant="flat"
-            rounded="lg"
-            class="action-btn"
-        >
-            Create a new task
-        </v-btn>
+    <v-btn
+        v-on:click="dialog = true"
+        color="primary"
+        variant="flat"
+        rounded="lg"
+        prepend-icon="mdi-plus"
+        class="action-btn"
+    >
+        New task
+    </v-btn>
 
-        <v-dialog v-model="dialog" width="500">
-            <v-card class="pa-6 rounded-xl">
-                <v-card-title class="text-h5 text-center mb-4"> Create a new task </v-card-title>
+    <v-dialog v-model="dialog" max-width="500">
+        <v-card class="pa-6 rounded-xl">
+            <v-card-title class="text-h5 text-center mb-4"> Create a new task </v-card-title>
 
-                <v-card-text>
-                    <v-form v-on:submit.prevent="handleCreate" class="d-flex flex-column ga-4">
-                        <v-text-field
-                            label="Title"
-                            v-model="title"
-                            variant="outlined"
-                            rounded="lg"
-                        />
+            <v-card-text>
+                <v-form v-on:submit.prevent="handleCreate" class="d-flex flex-column ga-4">
+                    <v-text-field label="Title" v-model="title" variant="outlined" rounded="lg" />
 
-                        <v-textarea label="Body" v-model="body" variant="outlined" rounded="lg" />
+                    <v-textarea label="Body" v-model="body" variant="outlined" rounded="lg" />
 
-                        <v-menu v-model="dateMenu" v-bind:close-on-content-click="false">
-                            <template v-slot:activator="{ props }">
-                                <v-text-field
-                                    v-bind="props"
-                                    label="Select Date"
-                                    v-bind:model-value="formatDate(date)"
-                                    readonly
-                                    variant="outlined"
-                                    rounded="lg"
-                                />
-                            </template>
-
-                            <v-date-picker
-                                v-model="date"
-                                v-on:update:modelValue="dateMenu = false"
+                    <v-menu v-model="dateMenu" v-bind:close-on-content-click="false">
+                        <template v-slot:activator="{ props }">
+                            <v-text-field
+                                v-bind="props"
+                                label="Select Date"
+                                v-bind:model-value="formatDate(date)"
+                                readonly
+                                variant="outlined"
+                                rounded="lg"
                             />
-                        </v-menu>
+                        </template>
 
-                        <v-menu v-model="timeMenu" v-bind:close-on-content-click="false">
-                            <template v-slot:activator="{ props }">
-                                <v-text-field
-                                    v-bind="props"
-                                    label="Select Time"
-                                    v-bind:model-value="time"
-                                    readonly
-                                    variant="outlined"
-                                    rounded="lg"
-                                />
-                            </template>
+                        <v-date-picker v-model="date" v-on:update:modelValue="dateMenu = false" />
+                    </v-menu>
 
-                            <v-time-picker
-                                v-model="time"
-                                format="24hr"
-                                v-on:update:modelValue="timeMenu = false"
+                    <v-menu v-model="timeMenu" v-bind:close-on-content-click="false">
+                        <template v-slot:activator="{ props }">
+                            <v-text-field
+                                v-bind="props"
+                                label="Select Time"
+                                v-bind:model-value="time"
+                                readonly
+                                variant="outlined"
+                                rounded="lg"
                             />
-                        </v-menu>
+                        </template>
 
-                        <v-select
-                            label="Category"
-                            v-model="category"
-                            v-bind:items="['Primary', 'Secondary']"
-                            variant="outlined"
-                            rounded="lg"
+                        <v-time-picker
+                            v-model="time"
+                            format="24hr"
+                            v-on:update:modelValue="timeMenu = false"
                         />
+                    </v-menu>
 
-                        <v-btn
-                            type="submit"
-                            color="primary"
-                            class="mt-2 action-btn"
-                            rounded="lg"
-                            elevation="1"
-                            variant="flat"
-                            block
-                        >
-                            Create task
-                        </v-btn>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
-    </div>
+                    <v-select
+                        label="Category"
+                        v-model="category"
+                        v-bind:items="['Primary', 'Secondary']"
+                        variant="outlined"
+                        rounded="lg"
+                    />
+
+                    <v-btn
+                        type="submit"
+                        color="primary"
+                        class="mt-2 action-btn"
+                        rounded="lg"
+                        elevation="1"
+                        variant="flat"
+                        block
+                    >
+                        Create task
+                    </v-btn>
+                </v-form>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
 </template>
 
 <style scoped>
     .action-btn {
         font-size: 0.92rem;
         font-weight: 700;
+        text-align: center;
+    }
+
+    .action-btn :deep(.v-btn__content) {
+        width: 100%;
+        justify-content: center;
     }
 </style>

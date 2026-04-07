@@ -49,36 +49,45 @@
 </script>
 
 <template>
-    <v-app>
-        <v-container class="pa-8 todo-page">
-            <v-row align="center" justify="space-between" class="mb-2">
-                <h1 class="page-title">List tasks</h1>
-                <TodoCreate v-on:add-task="addNewTask" />
-            </v-row>
+    <v-container class="pa-4 pa-sm-6 pa-md-8 todo-page">
+        <v-row align="center" justify="space-between" class="mb-4 flex-wrap ga-2">
+            <h1 class="page-title">List tasks</h1>
+            <TodoCreate v-on:add-task="addNewTask" />
+        </v-row>
 
-            <v-row class="ga-3">
-                <v-col v-for="todo in todoItems" v-bind:key="todo.pk" cols="12" sm="4">
-                    <v-card rounded="xl" hover class="task-card">
-                        <TodoDetail v-bind:todo="todo" />
-                        <div class="d-flex align-center px-2 pb-2 task-actions">
-                            <TodoUpdate v-bind:todo="todo" v-on:update-task="updateTask" />
-                            <TodoDelete v-bind:todo="todo" v-on:delete-task="deleteTask" />
-                        </div>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-    </v-app>
+        <v-row>
+            <v-col
+                v-for="todo in todoItems"
+                v-bind:key="todo.pk"
+                cols="12"
+                sm="6"
+                md="4"
+                lg="3"
+                class="d-flex"
+            >
+                <v-card rounded="xl" hover class="task-card w-100 d-flex flex-column">
+                    <TodoDetail v-bind:todo="todo" />
+                    <v-spacer />
+                    <v-divider class="mx-3 mb-1 opacity-30" />
+
+                    <v-card-actions class="px-4 pb-4 pt-1 task-actions">
+                        <TodoUpdate v-bind:todo="todo" v-on:update-task="updateTask" />
+                        <TodoDelete v-bind:todo="todo" v-on:delete-task="deleteTask" />
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <style scoped>
     .todo-page {
-        max-width: 1240px;
+        max-width: 1280px;
     }
 
     .page-title {
         color: rgb(var(--v-theme-text-primary));
-        font-size: clamp(1.6rem, 2.2vw, 2rem);
+        font-size: clamp(1.4rem, 2.2vw, 2rem);
         font-weight: 800;
         letter-spacing: 0.01em;
     }
@@ -92,6 +101,13 @@
     }
 
     .task-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
+    }
+
+    .task-card :deep(.action-btn) {
+        width: 100%;
+        min-width: 0;
     }
 </style>

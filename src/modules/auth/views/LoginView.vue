@@ -30,26 +30,19 @@
 </script>
 
 <template>
-    <v-app>
-        <v-container class="d-flex justify-center align-center" style="height: 80vh">
-            <v-card width="500" class="pa-6">
-                <v-card-title class="text-h5 text-center">Login</v-card-title>
-                <v-card-text>
-                    <v-form v-on:submit.prevent="handleLogin">
-                        <v-text-field v-model="username" label="Username" required />
-                        <v-text-field
-                            v-model="password"
-                            label="Password"
-                            type="password"
-                            required
-                        />
-                        <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
-                            {{ errorMessage }}
-                        </v-alert>
-                        <v-btn type="submit" color="primary" class="mt-4" block> Login </v-btn>
-                    </v-form>
-                </v-card-text>
-            </v-card>
-        </v-container>
-    </v-app>
+    <v-container class="d-flex justify-center align-center" style="height: 80vh">
+        <v-card width="500" class="pa-6">
+            <v-card-title class="text-h5 text-center">Login</v-card-title>
+            <v-card-text>
+                <v-form v-on:submit.prevent="handleLogin">
+                    <v-text-field v-model="username" label="Username" required />
+                    <v-text-field v-model="password" label="Password" type="password" required />
+                    <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
+                        {{ errorMessage }}
+                    </v-alert>
+                    <v-btn type="submit" color="primary" class="mt-4" block> Login </v-btn>
+                </v-form>
+            </v-card-text>
+        </v-card>
+    </v-container>
 </template>

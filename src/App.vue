@@ -4,8 +4,8 @@
 
 <template>
     <v-app>
+        <Navbar />
         <v-main class="app-main">
-            <Navbar />
             <RouterView />
         </v-main>
     </v-app>
@@ -14,10 +14,6 @@
 <style>
     html,
     body,
-    #app {
-        min-height: 100%;
-    }
-
     .app-main {
         background:
             radial-gradient(
