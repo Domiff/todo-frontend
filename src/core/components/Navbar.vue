@@ -19,7 +19,7 @@
         theme.toggle(["lightPurple", "darkPurple"])
     }
 
-    const currentIcon = computed(() => (theme.global.current.value.dark ? MoonIcon : SunIcon))
+    const currentIcon = computed(() => (theme.global.current.value.dark ? SunIcon : MoonIcon))
     const isAuthenticated = computed(() => !!auth.isAuthenticated)
 </script>
 
