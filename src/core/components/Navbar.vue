@@ -2,11 +2,10 @@
     import { computed, ref } from "vue"
     import { useDisplay, useTheme } from "vuetify"
 
+    import JustifyIcon from "@/core/components/icons/JustifyIcon.vue"
     import MoonIcon from "@/core/components/icons/MoonIcon.vue"
     import SunIcon from "@/core/components/icons/SunIcon.vue"
     import { useAuthStore } from "@/modules/auth/store"
-
-    import JustifyIcon from "./icons/JustifyIcon.vue"
 
     const theme = useTheme()
     const auth = useAuthStore()
