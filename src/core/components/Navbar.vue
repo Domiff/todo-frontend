@@ -9,10 +9,10 @@
 
     const theme = useTheme()
     const auth = useAuthStore()
-    const display = useDisplay()
+    const { mobile } = useDisplay()
 
     const drawer = ref<boolean | null>(null)
-    const isMobile = computed(() => display.smAndDown.value)
+    const isMobile = computed(() => mobile.value)
 
     function toggleTheme() {
         theme.toggle(["lightPurple", "darkPurple"])
@@ -27,14 +27,7 @@
         <v-app-bar-nav-icon v-on:click="drawer = !drawer"><JustifyIcon /></v-app-bar-nav-icon>
         <v-app-bar-title class="font-weight-bold nav-title">ToDo</v-app-bar-title>
         <v-spacer />
-        <v-btn
-            icon
-            size="small"
-            color="primary"
-            variant="tonal"
-            class="mr-2"
-            v-on:click="toggleTheme"
-        >
+        <v-btn size="small" color="primary" variant="tonal" class="mr-2" v-on:click="toggleTheme">
             <component v-bind:is="currentIcon" />
         </v-btn>
     </v-app-bar>
@@ -71,7 +64,7 @@
         <v-divider class="mx-6 opacity-50 nav-divider" />
 
         <div class="px-4 py-6">
-            <div class="text-uppercase text-xs font-weight-medium nav-group mb-3 px-4">Main</div>
+            <div class="font-weight-medium nav-group mb-3 px-4">MAIN</div>
 
             <div class="d-flex flex-column ga-1">
                 <v-btn
@@ -100,7 +93,7 @@
 
             <v-divider class="my-8 mx-4 opacity-30 nav-divider" />
 
-            <div class="text-uppercase text-xs font-weight-medium nav-group mb-3 px-4">Account</div>
+            <div class="font-weight-medium nav-group mb-3 px-4">ACCOUNT</div>
 
             <div class="d-flex flex-column ga-1">
                 <v-btn

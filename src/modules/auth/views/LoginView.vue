@@ -37,7 +37,7 @@
                 <v-form v-on:submit.prevent="handleLogin">
                     <v-text-field v-model="username" label="Username" required />
                     <v-text-field v-model="password" label="Password" type="password" required />
-                    <v-alert v-if="errorMessage" type="error" dense class="mt-2" border="start">
+                    <v-alert v-if="errorMessage" type="error" class="mt-2" border="start">
                         {{ errorMessage }}
                     </v-alert>
                     <v-btn type="submit" color="primary" class="mt-4" block> Login </v-btn>
