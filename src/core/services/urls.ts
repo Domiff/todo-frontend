@@ -7,9 +7,9 @@ export const urls = {
         refresh: "auth/token/refresh/",
     },
     api: {
-        read: "api/list/",
-        create: "api/create/",
-        update: "api/update/",
-        delete: "api/delete/",
+        read: "api/tasks/",
+        create: "api/tasks/",
+        update: "api/tasks/",
+        delete: "api/tasks/",
     },
 } as const
