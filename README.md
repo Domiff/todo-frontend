@@ -94,8 +94,7 @@ The routes below match the companion **Django** project layout: root `urlpattern
 
 | Path (after base URL)   | View / purpose                                   |
 | ----------------------- | ------------------------------------------------ |
-| `auth/tg/register/`     | Telegram registration (not used by this web app) |
-| `auth/web/register/`    | Web registration                                 |
+| `auth/register/`        | Registration                                     |
 | `auth/token/`           | Obtain JWT pair (login)                          |
 | `auth/token/refresh/`   | Refresh access token                             |
 | `auth/token/blacklist/` | Blacklist refresh token (logout)                 |
@@ -124,7 +123,7 @@ Used by this app:
 
 | Method | Path                    | Purpose                                                                      |
 | ------ | ----------------------- | ---------------------------------------------------------------------------- |
-| POST   | `auth/web/register/`    | Register; tokens in `RegisterResponse` (`src/modules/auth/schemas/auth.ts`). |
+| POST   | `auth/register/`        | `username`, `password`, optional `email`; tokens in `RegisterResponse` (`src/modules/auth/schemas/auth.ts`). |
 | POST   | `auth/token/`           | Login → `LoginRefreshResponse`.                                              |
 | POST   | `auth/token/refresh/`   | Body `{ refresh }` — new access (and refresh) tokens.                        |
 | POST   | `auth/token/blacklist/` | Logout.                                                                      |

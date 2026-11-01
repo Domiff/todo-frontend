@@ -25,6 +25,7 @@ export const useAuthStore = defineStore("auth", () => {
         const refreshToken = { refresh: getRefreshToken() } as RefreshLogoutRequest
         const newAccess = await refresh(refreshToken)
         localStorage.setItem("access", newAccess.access)
+        localStorage.setItem("refresh", newAccess.refresh)
         isAuthenticated.value = !!getAccessToken()
     }
 

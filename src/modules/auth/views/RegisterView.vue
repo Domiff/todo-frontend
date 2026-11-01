@@ -7,8 +7,6 @@
     import { useAuthStore } from "@/modules/auth/store"
 
     const username = ref("")
-    const firstName = ref("")
-    const lastName = ref("")
     const email = ref("")
     const password1 = ref("")
     const password2 = ref("")
@@ -19,7 +17,7 @@
     const required = (value: string) => !!value || "This field is required"
     const validEmail = (value: string) => {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return (!!value && pattern.test(value)) || "Invalid email"
+        return !value || pattern.test(value) || "Invalid email"
     }
     const passwordsMatch = (): boolean | string =>
         password1.value === password2.value || "Passwords do not match"
@@ -31,10 +29,10 @@
         }
         const data: RegisterRequest = {
             username: username.value,
-            first_name: firstName.value,
-            last_name: lastName.value,
-            email: email.value,
             password: password1.value,
+        }
+        if (email.value) {
+            data.email = email.value
         }
         try {
             const registerData = (await register(data)) as RegisterResponse
@@ -61,23 +59,10 @@
                         required
                     />
                     <v-text-field
-                        label="Firstname"
-                        v-model="firstName"
-                        v-bind:rules="[required]"
-                        required
-                    />
-                    <v-text-field
-                        label="Lastname"
-                        v-model="lastName"
-                        v-bind:rules="[required]"
-                        required
-                    />
-                    <v-text-field
-                        label="Email"
+                        label="Email (optional)"
                         v-model="email"
                         type="email"
-                        v-bind:rules="[required, validEmail]"
-                        required
+                        v-bind:rules="[validEmail]"
                     />
                     <v-text-field
                         label="Password"

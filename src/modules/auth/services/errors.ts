@@ -8,15 +8,11 @@ export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) 
         const serverData = error.response?.data
 
         if (serverData?.username) {
-            errorMessage.value = `Username: "${serverData.username}"`
-        } else if (serverData?.first_name) {
-            errorMessage.value = `Firstname "${serverData.first_name}"`
-        } else if (serverData?.last_name) {
-            errorMessage.value = `Lastname "${serverData.last_name}"`
+            errorMessage.value = `Username: ${serverData.username.join(" ")}`
         } else if (serverData?.email) {
-            errorMessage.value = `Email "${serverData.email}"`
-        } else if (error.response?.status === 500) {
-            errorMessage.value = `Field username and email must be unique`
+            errorMessage.value = `Email: ${serverData.email.join(" ")}`
+        } else if (serverData?.password) {
+            errorMessage.value = `Password: ${serverData.password.join(" ")}`
         } else {
             errorMessage.value = "Registration failed. Please try again"
         }
@@ -29,7 +25,7 @@ export function registerErrorHandler(error: unknown, errorMessage: Ref<string>) 
 
 export function loginErrorHandler(error: unknown, errorMessage: Ref<string>) {
     if (axios.isAxiosError<LoginError>(error)) {
-        if (error.response?.status === 400) {
+        if (error.response?.status === 400 || error.response?.status === 401) {
             errorMessage.value = "Incorrect login or password!"
         } else {
             errorMessage.value = "An error occurred. Please try again later."
