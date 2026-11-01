@@ -1,9 +1,13 @@
 import { FetchApiClient } from "@/core/services/apiCient.ts"
 import { urls } from "@/core/services/urls.ts"
-import type { TaskCreate, TaskDetail, TaskUpdate } from "@/modules/todo/schemas/todo.ts"
+import type { Category, TaskCreate, TaskDetail, TaskUpdate } from "@/modules/todo/schemas/todo.ts"
 import { makeAuthHeader } from "@/modules/todo/services/utils.ts"
 
 const todoClient = new FetchApiClient(urls.base)
+
+export async function categoriesListView(): Promise<Category[]> {
+    return await todoClient.get<Category[]>(urls.api.categories, { headers: makeAuthHeader() })
+}
 
 export async function tasksListView(): Promise<TaskDetail[]> {
     return await todoClient.get<TaskDetail[]>(urls.api.read, { headers: makeAuthHeader() })

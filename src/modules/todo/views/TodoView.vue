@@ -7,10 +7,11 @@
     import TodoDelete from "@/modules/todo/components/todo/TodoDelete.vue"
     import TodoDetail from "@/modules/todo/components/todo/TodoDetail.vue"
     import TodoUpdate from "@/modules/todo/components/todo/TodoUpdate.vue"
-    import type { TaskDetail } from "@/modules/todo/schemas/todo.ts"
-    import { tasksListView } from "@/modules/todo/services/todo.ts"
+    import type { Category, TaskDetail } from "@/modules/todo/schemas/todo.ts"
+    import { categoriesListView, tasksListView } from "@/modules/todo/services/todo.ts"
 
     const todoItems = ref<TaskDetail[]>([])
+    const categories = ref<Category[]>([])
 
     const auth = useAuthStore()
 
@@ -32,13 +33,18 @@
         }
     }
 
+    async function loadData() {
+        todoItems.value = await tasksListView()
+        categories.value = await categoriesListView()
+    }
+
     onMounted(async () => {
         try {
-            todoItems.value = await tasksListView()
+            await loadData()
         } catch {
             try {
                 await auth.updateAccess()
-                todoItems.value = await tasksListView()
+                await loadData()
             } catch {
                 auth.logout()
                 window.alert("You are not logged in")
@@ -52,7 +58,7 @@
     <v-container class="pa-4 pa-sm-6 pa-md-8 todo-page">
         <v-row align="center" justify="space-between" class="mb-4 flex-wrap ga-2">
             <h1 class="page-title">List tasks</h1>
-            <TodoCreate v-on:add-task="addNewTask" />
+            <TodoCreate v-bind:categories="categories" v-on:add-task="addNewTask" />
         </v-row>
 
         <v-row>
@@ -66,12 +72,16 @@
                 class="d-flex"
             >
                 <v-card rounded="xl" hover class="task-card w-100 d-flex flex-column">
-                    <TodoDetail v-bind:todo="todo" />
+                    <TodoDetail v-bind:todo="todo" v-bind:categories="categories" />
                     <v-spacer />
                     <v-divider class="mx-3 mb-1 opacity-30" />
 
                     <v-card-actions class="px-4 pb-4 pt-1 task-actions">
-                        <TodoUpdate v-bind:todo="todo" v-on:update-task="updateTask" />
+                        <TodoUpdate
+                            v-bind:todo="todo"
+                            v-bind:categories="categories"
+                            v-on:update-task="updateTask"
+                        />
                         <TodoDelete v-bind:todo="todo" v-on:delete-task="deleteTask" />
                     </v-card-actions>
                 </v-card>

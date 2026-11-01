@@ -2,21 +2,30 @@
     import { computed } from "vue"
     import { blue, green, grey, orange, red } from "vuetify/util/colors"
 
-    import type { TaskDetail } from "@/modules/todo/schemas/todo.ts"
+    import { type Category, priorities, type TaskDetail } from "@/modules/todo/schemas/todo.ts"
     import { formatDate, formatTime } from "@/modules/todo/services/utils.ts"
 
-    const { todo } = defineProps<{
+    const { todo, categories } = defineProps<{
         todo: TaskDetail
+        categories: Category[]
     }>()
 
-    const categoryColor = computed(() => {
-        if (todo.category === "High") {
+    const priorityColor = computed(() => {
+        if (todo.priority === 3) {
             return red.base
-        } else if (todo.category === "Medium") {
+        } else if (todo.priority === 2) {
             return orange.base
         }
         return grey.base
     })
+
+    const priorityTitle = computed(
+        () => priorities.find((priority) => priority.value === todo.priority)?.title,
+    )
+
+    const categoryName = computed(
+        () => categories.find((category) => category.slug === todo.category)?.name ?? todo.category,
+    )
 
     const completedColor = computed(() => {
         if (todo.completed) {
@@ -32,9 +41,15 @@
             {{ todo.completed ? "Done" : "In process" }}
         </v-chip>
 
-        <v-chip class="chip-category" v-bind:color="categoryColor" size="small">
-            {{ todo.category }}
-        </v-chip>
+        <div class="d-flex ga-1">
+            <v-chip v-if="categoryName" class="chip-category" size="small">
+                {{ categoryName }}
+            </v-chip>
+
+            <v-chip class="chip-priority" v-bind:color="priorityColor" size="small">
+                {{ priorityTitle }}
+            </v-chip>
+        </div>
     </div>
     <v-divider class="mx-3 mt-2 mb-1 opacity-30" />
     <div class="task-content">
@@ -56,7 +71,8 @@
 
 <style scoped>
     .chip-status,
-    .chip-category {
+    .chip-category,
+    .chip-priority {
         font-weight: 600;
     }
 

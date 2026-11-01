@@ -9,7 +9,7 @@ A **Vue 3** single-page app for personal task management. It talks to a REST bac
 | Area                 | Behavior                                                                                                                                                        |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Home** (`/`)       | Simple welcome screen.                                                                                                                                          |
-| **Tasks** (`/tasks`) | Grid of cards: task details, create, edit (title, body, category, deadline, completed), delete. Data loads on mount and updates optimistically after mutations. |
+| **Tasks** (`/tasks`) | Grid of cards: task details, create, edit (title, body, priority, category, deadline, completed), delete. Data loads on mount and updates optimistically after mutations. |
 | **Auth**             | `/register`, `/login`, `/logout` — forms wired to the auth service; tokens persisted under `access` and `refresh` in `localStorage`.                            |
 | **Shell**            | Persistent sidebar (`Navbar.vue`): navigation, theme toggle (emoji sun/moon).                                                                                   |
 
@@ -58,10 +58,14 @@ npm run preview
 
 ## Configuration
 
-The API **base URL** comes from the `VITE_API_URL` environment variable. Create a `.env` file in the project root (it is gitignored):
+The API **base URL** comes from the `VITE_API_URL` environment variable. Create a `.env` file in the project root from the template (it is gitignored):
+
+```bash
+cp .env_template .env
+```
 
 ```env
-VITE_API_URL=http://127.0.0.1:8000/
+VITE_API_URL=http://localhost:8000/
 ```
 
 Keep the trailing slash: paths in `urls.ts` are relative (e.g. `api/tasks/`).
@@ -138,7 +142,7 @@ Used by this app:
 
 **Not wired in this repo:** `GET api/tasks/<pk>` (detail) — the UI loads the full list and edits in place.
 
-Task fields: `pk`, `title`, `body`, `category`, `deadline`, `completed`, `created_at`, `updated_at` — see `src/modules/todo/schemas/todo.ts`.
+Task fields: `pk`, `title`, `body`, `priority`, `category`, `deadline`, `completed`, `created_at`, `updated_at` — see `src/modules/todo/schemas/todo.ts`.
 
 ---
 

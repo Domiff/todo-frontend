@@ -1,7 +1,19 @@
+export interface Category {
+    slug: string
+    name: string
+}
+
+export const priorities = [
+    { value: 1, title: "Low" },
+    { value: 2, title: "Middle" },
+    { value: 3, title: "High" },
+]
+
 interface BaseTask {
     title: string
     deadline: string
-    category: string
+    priority: number
+    category: string | null
 }
 
 export interface TaskDetail extends BaseTask {

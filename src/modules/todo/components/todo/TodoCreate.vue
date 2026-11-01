@@ -1,14 +1,19 @@
 <script setup lang="ts">
     import { ref } from "vue"
 
-    import type { TaskCreate } from "@/modules/todo/schemas/todo.ts"
+    import { type Category, priorities, type TaskCreate } from "@/modules/todo/schemas/todo.ts"
     import { taskCreateView } from "@/modules/todo/services/todo.ts"
     import { formatDate } from "@/modules/todo/services/utils.ts"
+
+    const { categories } = defineProps<{
+        categories: Category[]
+    }>()
 
     const dialog = ref(false)
 
     const title = ref("")
-    const category = ref("")
+    const priority = ref(2)
+    const category = ref<string | null>(null)
     const body = ref("")
 
     const date = ref<string>("")
@@ -31,6 +36,7 @@
             const task: TaskCreate = {
                 title: title.value,
                 deadline: deadline.toISOString(),
+                priority: priority.value,
                 category: category.value,
                 body: body.value,
             }
@@ -97,9 +103,20 @@
                     </v-menu>
 
                     <v-select
+                        label="Priority"
+                        v-model="priority"
+                        v-bind:items="priorities"
+                        variant="outlined"
+                        rounded="lg"
+                    />
+
+                    <v-select
                         label="Category"
                         v-model="category"
-                        v-bind:items="['Primary', 'Secondary']"
+                        v-bind:items="categories"
+                        item-title="name"
+                        item-value="slug"
+                        clearable
                         variant="outlined"
                         rounded="lg"
                     />

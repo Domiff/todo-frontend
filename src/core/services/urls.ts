@@ -11,5 +11,6 @@ export const urls = {
         create: "api/tasks/",
         update: "api/tasks/",
         delete: "api/tasks/",
+        categories: "api/categories/",
     },
 } as const

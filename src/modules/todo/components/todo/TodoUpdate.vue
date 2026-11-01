@@ -1,18 +1,25 @@
 <script setup lang="ts">
     import { ref } from "vue"
 
-    import type { TaskDetail, TaskUpdate } from "@/modules/todo/schemas/todo.ts"
+    import {
+        type Category,
+        priorities,
+        type TaskDetail,
+        type TaskUpdate,
+    } from "@/modules/todo/schemas/todo.ts"
     import { taskUpdateView } from "@/modules/todo/services/todo.ts"
     import { formatDate, formatTime } from "@/modules/todo/services/utils.ts"
 
-    const { todo } = defineProps<{
+    const { todo, categories } = defineProps<{
         todo: TaskDetail
+        categories: Category[]
     }>()
     const emit = defineEmits(["update-task"])
 
     const dialog = ref(false)
 
     const title = ref(todo.title)
+    const priority = ref(todo.priority)
     const category = ref(todo.category)
     const body = ref(todo.body)
     const completed = ref(todo.completed)
@@ -36,6 +43,7 @@
                 pk: todo.pk,
                 title: title.value,
                 deadline: deadline.toISOString(),
+                priority: priority.value,
                 category: category.value,
                 body: body.value,
                 completed: completed.value,
@@ -110,9 +118,20 @@
                     </v-menu>
 
                     <v-select
+                        label="Priority"
+                        v-model="priority"
+                        v-bind:items="priorities"
+                        variant="outlined"
+                        rounded="lg"
+                    />
+
+                    <v-select
                         label="Category"
                         v-model="category"
-                        v-bind:items="['High', 'Medium', 'Low']"
+                        v-bind:items="categories"
+                        item-title="name"
+                        item-value="slug"
+                        clearable
                         variant="outlined"
                         rounded="lg"
                     />
